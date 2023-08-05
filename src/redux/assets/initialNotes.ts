@@ -1,0 +1,60 @@
+import { Note } from "../../interfaces/note";
+
+export const initialNotes: Note[] = [
+  {
+    id: 1,
+    name: "Task1Test",
+    content: "text1text1text 09/05/2021 - 12/05/2021",
+    dateOfCreation: "April 07, 2023",
+    category: "Task",
+    status: "active",
+  },
+  {
+    id: 2,
+    name: "Task2Test",
+    content: "text2text2text",
+    dateOfCreation: "November 10, 2023",
+    category: "Random Thought",
+    status: "active",
+  },
+  {
+    id: 3,
+    name: "Task3Test",
+    content: "text3text3text",
+    dateOfCreation: "May 15, 2023",
+    category: "Idea",
+    status: "active",
+  },
+  {
+    id: 4,
+    name: "Task4Test",
+    content: "text4text4text 12/05/2021",
+    dateOfCreation: "May 15, 2024",
+    category: "Idea",
+    status: "active",
+  },
+  {
+    id: 5,
+    name: "Task5Test",
+    content: "text5text5text",
+    dateOfCreation: "May 15, 2022",
+    category: "Task",
+    status: "archived",
+  },
+  {
+    id: 6,
+    name: "Task6Test",
+    content: "text6text6text 12/05/2021",
+    dateOfCreation: "October 13, 2022",
+    category: "Idea",
+    status: "active",
+  },
+  {
+    id: 7,
+    name: "Task7Test",
+    content: "text7text7text",
+    dateOfCreation: "June 01, 2023",
+    category: "Random Thought",
+    status: "archived",
+  },
+];
