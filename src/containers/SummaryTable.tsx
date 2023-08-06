@@ -10,7 +10,7 @@ const SummaryTable: React.FC = () => {
   const notesStatistic = FormateRow.getNotesStatistic(notesData);
   const tbodyData: any[] = [];
 
-  // Formate rows for table component like: [[name: ..., date: ..., ...], [...], [...], ...]
+  // Formate rows for table component like: [[category: ..., active: ..., ...], [...], [...], ...]
   for (const el in notesStatistic) {
     const elIcon = <Icon type={el} />;
     tbodyData.push([elIcon, el, notesStatistic[el].active, notesStatistic[el].archive]);
