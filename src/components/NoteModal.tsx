@@ -12,7 +12,7 @@ import {
   TextField,
 } from "@mui/material";
 import { Note } from "../interfaces/note";
-import CustomButton from "../components/CustomButton";
+import CustomButton from "./CustomButton";
 import { addNote } from "../redux/slices/notesSlice";
 import { useAppDispatch } from "../hooks/hooksRedux";
 
