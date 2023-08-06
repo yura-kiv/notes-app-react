@@ -7,7 +7,7 @@ import { theadNotesData } from "./helpers/headersData";
 import CustomButton from "../components/CustomButton";
 import { useAppDispatch } from "../hooks/hooksRedux";
 import { deleteNote, editNote, toggleArchiveNote } from "../redux/slices/notesSlice";
-import NoteModal from "./NoteModal";
+import NoteModal from "../components/NoteModal";
 
 interface NotesTableProps {
   isShowArchived: boolean;

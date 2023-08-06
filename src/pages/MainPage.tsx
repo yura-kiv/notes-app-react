@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import SummaryTable from "../containers/SummaryTable";
 import NotesTable from "../containers/NotesTable";
 import Button from "../components/CustomButton";
-import NoteModal from "../containers/NoteModal";
+import NoteModal from "../components/NoteModal";
 import { addNote } from "../redux/slices/notesSlice";
 import { useAppDispatch } from "../hooks/hooksRedux";
 
