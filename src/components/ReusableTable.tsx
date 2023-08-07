@@ -1,11 +1,4 @@
 import React from "react";
-import Table from "@mui/material/Table";
-import TableBody from "@mui/material/TableBody";
-import TableCell from "@mui/material/TableCell";
-import TableContainer from "@mui/material/TableContainer";
-import TableHead from "@mui/material/TableHead";
-import TableRow from "@mui/material/TableRow";
-import Paper from "@mui/material/Paper";
 
 interface TableProps {
   theadData: (string | JSX.Element)[];
@@ -14,34 +7,29 @@ interface TableProps {
 
 const ReusableTable: React.FC<TableProps> = ({ theadData, tbodyData }) => {
   return (
-    <TableContainer
-      sx={{ maxWidth: "fit-content" }}
-      component={Paper}
+    <table
+      className="table"
+      id="table"
     >
-      <Table
-        sx={{ minWidth: 900, maxWidth: 900 }}
-        aria-label="simple table"
-      >
-        <TableHead>
-          <TableRow>
-            {theadData.map((data, index) => {
-              return <TableCell key={index}>{data}</TableCell>;
-            })}
-          </TableRow>
-        </TableHead>
-        <TableBody>
-          {tbodyData.map((row, index) => {
-            return (
-              <TableRow key={index}>
-                {row.map((el: [], index) => {
-                  return <TableCell key={index}>{el}</TableCell>;
-                })}
-              </TableRow>
-            );
+      <thead>
+        <tr>
+          {theadData.map((data, index) => {
+            return <td key={index}>{data}</td>;
           })}
-        </TableBody>
-      </Table>
-    </TableContainer>
+        </tr>
+      </thead>
+      <tbody>
+        {tbodyData.map((row, index) => {
+          return (
+            <tr key={index}>
+              {row.map((el: [], index) => {
+                return <td key={index}>{el}</td>;
+              })}
+            </tr>
+          );
+        })}
+      </tbody>
+    </table>
   );
 };
 
