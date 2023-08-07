@@ -11,10 +11,7 @@ import {
   SelectChangeEvent,
   TextField,
 } from "@mui/material";
-import { Note } from "../interfaces/note";
 import CustomButton from "./CustomButton";
-import { addNote } from "../redux/slices/notesSlice";
-import { useAppDispatch } from "../hooks/hooksRedux";
 
 const categories: string[] = ["Task", "Random Thought", "Idea"];
 
@@ -38,7 +35,7 @@ interface NoteModalProps {
   prevContent: string;
   prevCategory: string;
   id?: number;
-  completeBtnCallback: (name: string, content: string, category: string, id?: number) => void;
+  completeModalBtnCallback: (name: string, content: string, category: string, id?: number) => void;
 }
 
 const NoteModal: React.FC<NoteModalProps> = ({
@@ -49,24 +46,33 @@ const NoteModal: React.FC<NoteModalProps> = ({
   prevName = "",
   prevContent = "",
   prevCategory = "",
-  completeBtnCallback,
+  completeModalBtnCallback,
 }) => {
-  const dispatch = useAppDispatch();
-  const [name, setName] = useState("");
-  const [content, setContent] = useState("");
-  const [category, setCategory] = useState("Task");
+  const [name, setName] = useState<string>(prevName);
+  const [content, setContent] = useState<string>(prevContent);
+  const [category, setCategory] = useState<string>(prevCategory);
 
   const handleChange = (event: SelectChangeEvent) => {
-    setCategory(event.target.value as string);
+    const value = event.target.value;
+    setCategory(value);
   };
+
+  useEffect(() => {
+    if (open) {
+      setName(prevName);
+      setContent(prevContent);
+      setCategory(prevCategory);
+    } else {
+      setName("");
+      setContent("");
+      setCategory("");
+    }
+  }, [open]);
 
   return (
     <Modal
       open={open}
       onClose={() => {
-        setName("");
-        setContent("");
-        setCategory("Task");
         return handleClose();
       }}
       aria-labelledby="modal-modal-title"
@@ -123,11 +129,8 @@ const NoteModal: React.FC<NoteModalProps> = ({
         </FormControl>
         <CustomButton
           callback={() => {
-            setName("");
-            setContent("");
-            setCategory("Task");
             handleClose();
-            return completeBtnCallback(name, content, category, id);
+            return completeModalBtnCallback(name, content, category, id);
           }}
         >
           {header}

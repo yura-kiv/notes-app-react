@@ -87,7 +87,7 @@ const NotesTable: React.FC<NotesTableProps> = ({ isShowArchived }) => {
         prevContent={editNoteState.content}
         prevName={editNoteState.name}
         prevCategory={editNoteState.category}
-        completeBtnCallback={function (
+        completeModalBtnCallback={function (
           name: string,
           content: string,
           category: string,
