@@ -40,7 +40,7 @@ const MainPage = () => {
         prevContent=""
         prevName=""
         prevCategory="Task"
-        completeBtnCallback={function (name: string, content: string, category: string) {
+        completeModalBtnCallback={function (name: string, content: string, category: string) {
           dispatch(addNote({ name, content, category }));
         }}
       />

@@ -11,7 +11,7 @@ interface NoteModalProps {
   prevContent: string;
   prevCategory: string;
   id?: number;
-  completeBtnCallback: (name: string, content: string, category: string, id?: number) => void;
+  completeModalBtnCallback: (name: string, content: string, category: string, id?: number) => void;
 }
 
 const NoteModal: React.FC<NoteModalProps> = ({
@@ -22,18 +22,16 @@ const NoteModal: React.FC<NoteModalProps> = ({
   prevName = "",
   prevContent = "",
   prevCategory = "",
-  completeBtnCallback,
+  completeModalBtnCallback,
 }) => {
   const [name, setName] = useState<string>(prevName);
   const [content, setContent] = useState<string>(prevContent);
   const [category, setCategory] = useState<string>(prevCategory);
 
-  const handleChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
+  const handleCategoryChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
     const value = event.target.value;
     setCategory(value);
   };
-
-  console.log(name, category, content);
 
   useEffect(() => {
     if (open) {
@@ -70,7 +68,7 @@ const NoteModal: React.FC<NoteModalProps> = ({
           <select
             id="modal-window_select"
             value={category}
-            onChange={handleChange}
+            onChange={handleCategoryChange}
           >
             {categories.map((category) => {
               return (
@@ -87,7 +85,7 @@ const NoteModal: React.FC<NoteModalProps> = ({
         <CustomButton
           callback={() => {
             handleClose();
-            return completeBtnCallback(name, content, category, id);
+            return completeModalBtnCallback(name, content, category, id);
           }}
         >
           {header}
