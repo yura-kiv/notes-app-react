@@ -7,29 +7,48 @@ interface TableProps {
 
 const ReusableTable: React.FC<TableProps> = ({ theadData, tbodyData }) => {
   return (
-    <table
-      className="table"
-      id="table"
-    >
-      <thead>
-        <tr>
-          {theadData.map((data, index) => {
-            return <td key={index}>{data}</td>;
+    <div className="h-fit w-fit relative overflow-x-auto shadow-md rounded-lg">
+      <table
+        className="text-sm text-left text-gray-5"
+        id="table"
+      >
+        <thead className="text-xs text-gray-700 uppercase bg-gray-300">
+          <tr>
+            {theadData.map((data, index) => {
+              return (
+                <th
+                  className="px-6 py-3"
+                  key={index}
+                >
+                  {data}
+                </th>
+              );
+            })}
+          </tr>
+        </thead>
+        <tbody>
+          {tbodyData.map((row, index) => {
+            return (
+              <tr
+                className="bg-white border-b hover:bg-gray-50"
+                key={index}
+              >
+                {row.map((el: [], index) => {
+                  return (
+                    <td
+                      className="px-6 py-4"
+                      key={index}
+                    >
+                      {el}
+                    </td>
+                  );
+                })}
+              </tr>
+            );
           })}
-        </tr>
-      </thead>
-      <tbody>
-        {tbodyData.map((row, index) => {
-          return (
-            <tr key={index}>
-              {row.map((el: [], index) => {
-                return <td key={index}>{el}</td>;
-              })}
-            </tr>
-          );
-        })}
-      </tbody>
-    </table>
+        </tbody>
+      </table>
+    </div>
   );
 };
 

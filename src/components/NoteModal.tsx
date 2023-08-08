@@ -1,5 +1,9 @@
 import React, { useEffect, useState } from "react";
 import CustomButton from "./CustomButton";
+import CustomInput from "./CustomInput";
+import useInput from "../hooks/useInput";
+import CustomSelect from "./CustomSelect";
+import useSelect from "../hooks/useSelect";
 
 const categories: string[] = ["Task", "Random Thought", "Idea"];
 
@@ -21,78 +25,85 @@ const NoteModal: React.FC<NoteModalProps> = ({
   header,
   prevName = "",
   prevContent = "",
-  prevCategory = "",
+  prevCategory = categories[0],
   completeModalBtnCallback,
 }) => {
-  const [name, setName] = useState<string>(prevName);
-  const [content, setContent] = useState<string>(prevContent);
-  const [category, setCategory] = useState<string>(prevCategory);
-
-  const handleCategoryChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
-    const value = event.target.value;
-    setCategory(value);
-  };
+  const nameInput = useInput(prevName);
+  const contentInput = useInput(prevContent);
+  const categorySelect = useSelect(prevCategory);
 
   useEffect(() => {
-    if (open) {
-      setName(prevName);
-      setContent(prevContent);
-      setCategory(prevCategory);
-    } else {
-      setName("");
-      setContent("");
-      setCategory("");
-    }
+    nameInput.setValue(prevName);
+    contentInput.setValue(prevContent);
+    categorySelect.setValue(prevCategory);
+    return () => {
+      nameInput.setValue("");
+      contentInput.setValue("");
+      categorySelect.setValue("");
+      nameInput.setError(false);
+      contentInput.setError(false);
+    };
   }, [open]);
 
-  return (
-    <div className="modal-winow-wrapper">
-      <div className="modal-window">
-        <h3 className="modal-window_title">{header}</h3>
-        <input
-          className="modal-window_input"
-          defaultValue={prevName}
-          onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
-            setName(event.target.value);
-          }}
-        />
-        <input
-          className="modal-window_input"
-          defaultValue={prevContent}
-          onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
-            setContent(event.target.value);
-          }}
-        />
-        <label>
-          Category:
-          <select
-            id="modal-window_select"
-            value={category}
-            onChange={handleCategoryChange}
-          >
-            {categories.map((category) => {
-              return (
-                <option
-                  key={category}
-                  value={category}
-                >
-                  {category}
-                </option>
-              );
-            })}
-          </select>
-        </label>
-        <CustomButton
-          callback={() => {
-            handleClose();
-            return completeModalBtnCallback(name, content, category, id);
-          }}
-        >
-          {header}
-        </CustomButton>
+  const validateInput = (input: { value: string; setError: (value: boolean) => void }) => {
+    if (!input.value.trim()) {
+      input.setError(true);
+      return false;
+    } else {
+      input.setError(false);
+      return true;
+    }
+  };
+
+  const handleSubmit = (event: React.FormEvent) => {
+    event.preventDefault();
+    if (validateInput(nameInput) && validateInput(contentInput)) {
+      completeModalBtnCallback(nameInput.value, contentInput.value, categorySelect.value, id);
+      handleClose();
+    }
+  };
+
+  return open ? (
+    <div
+      onClick={handleClose}
+      className={
+        "z-10 fixed top-0 right-0 bottom-0 left-0 bg-black bg-opacity-25 backdrop-blur-sm flex items-center justify-center"
+      }
+    >
+      <div
+        onClick={(event) => {
+          event.stopPropagation();
+        }}
+        className="relative bg-white p-8 rounded-md w-96 animate-upriseAnimation"
+      >
+        <form onSubmit={handleSubmit}>
+          <span className="block font-bold text-lg mb-3">{header}</span>
+          <CustomInput
+            type="text"
+            label="Name"
+            name="name"
+            placeholder="Please enter note name"
+            {...nameInput}
+          />
+          <CustomInput
+            type="text"
+            label="Content"
+            name="content"
+            placeholder="Please enter note content"
+            {...contentInput}
+          />
+          <CustomSelect
+            name="category"
+            label="Category"
+            value={categorySelect.value}
+            options={categories}
+            onChange={categorySelect.onChange}
+          ></CustomSelect>
+          <CustomButton callback={() => {}}>{header}</CustomButton>
+        </form>
       </div>
     </div>
-  );
+  ) : null;
 };
 
 export default NoteModal;

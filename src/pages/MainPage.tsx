@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import SummaryTable from "../containers/SummaryTable";
 import NotesTable from "../containers/NotesTable";
-import Button from "../components/CustomButton";
+import CustomButton from "../components/CustomButton";
 import NoteModal from "../components/NoteModal";
 import { addNote } from "../redux/slices/notesSlice";
 import { useAppDispatch } from "../hooks/hooksRedux";
@@ -12,25 +12,7 @@ const MainPage = () => {
   const dispatch = useAppDispatch();
 
   return (
-    <>
-      <NotesTable isShowArchived={isShowArchived} />
-      <div className="buttons-wrapper">
-        <Button
-          callback={() => {
-            setIsCreateNoteModalACtive(true);
-          }}
-        >
-          Create note
-        </Button>
-        <Button
-          callback={() => {
-            setIsShowArchived((prev) => !prev);
-          }}
-        >
-          {isShowArchived ? "Show archived" : "Show active"}
-        </Button>
-      </div>
-      <SummaryTable />
+    <div className="w-full flex flex-wrap justify-center">
       <NoteModal
         open={isCreateNoteModalACtive}
         handleClose={() => {
@@ -44,7 +26,25 @@ const MainPage = () => {
           dispatch(addNote({ name, content, category }));
         }}
       />
-    </>
+      <NotesTable isShowArchived={isShowArchived} />
+      <div className="w-full flex justify-around mt-5">
+        <CustomButton
+          callback={() => {
+            setIsCreateNoteModalACtive(true);
+          }}
+        >
+          Create note
+        </CustomButton>
+        <CustomButton
+          callback={() => {
+            setIsShowArchived((prev) => !prev);
+          }}
+        >
+          {isShowArchived ? "Show archived" : "Show active"}
+        </CustomButton>
+      </div>
+      <SummaryTable />
+    </div>
   );
 };
 
