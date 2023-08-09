@@ -14,13 +14,27 @@ export default meta;
 
 type Story = StoryObj<typeof meta>;
 
-export const DefaultNoteModalExample: Story = {
+export const CreateNoteModal: Story = {
   args: {
     header: "Create note",
     open: true,
     prevCategory: "Task",
     prevContent: "",
     prevName: "",
+    handleClose: () => {},
+    completeModalBtnCallback: (name, content, category, id) => {
+      console.log(name, content, category);
+    },
+  },
+};
+
+export const EditNoteModal: Story = {
+  args: {
+    header: "Create note",
+    open: true,
+    prevCategory: "Task",
+    prevContent: "textetexttext",
+    prevName: "namenamename",
     id: 1,
     handleClose: () => {},
     completeModalBtnCallback: (name, content, category, id) => {

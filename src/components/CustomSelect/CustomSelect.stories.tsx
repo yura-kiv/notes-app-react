@@ -17,7 +17,7 @@ export default meta;
 
 type Story = StoryObj<typeof meta>;
 
-export const InputHookExample = () => {
+export const SelectHook = () => {
   const select = useSelect(options[0]);
   return (
     <CustomSelect
@@ -30,12 +30,14 @@ export const InputHookExample = () => {
   );
 };
 
-export const DefaultInputExample: Story = {
+export const DefaultSelect: Story = {
   args: {
     name: "categories",
     label: "Categories",
     options,
     value: options[0],
-    onChange: () => {},
+    onChange: (event) => {
+      console.log(event.target.value);
+    },
   },
 };

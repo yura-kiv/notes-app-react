@@ -16,16 +16,16 @@ export default meta;
 
 type Story = StoryObj<typeof meta>;
 
-export const NoteTableEmptyExample: Story = {
+export const NoteTableEmpty: Story = {
   args: {
     theadData: theadNotesData,
     tbodyData: [],
   },
 };
 
-export const NoteTableExample: Story = {
+export const NoteTableFilled: Story = {
   args: {
-    ...NoteTableEmptyExample.args,
+    ...NoteTableEmpty.args,
     tbodyData: tbodyData,
   },
 };
