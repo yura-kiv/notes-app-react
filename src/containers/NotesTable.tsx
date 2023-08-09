@@ -1,13 +1,13 @@
 import React, { useState } from "react";
 import { useAppSelector } from "../hooks/hooksRedux";
-import Table from "../components/ReusableTable";
+import Table from "../components/ReusableTable/ReusableTable";
 import Icon from "../components/Icon";
-import { FormateRow } from "./helpers/formateRow";
+import { FormateRow } from "./helpers/helpFormateRow";
 import { theadNotesData } from "./helpers/headersData";
-import CustomButton from "../components/CustomButton";
+import CustomButton from "../components/CustomButton/CustomButton";
 import { useAppDispatch } from "../hooks/hooksRedux";
 import { deleteNote, editNote, toggleArchiveNote } from "../redux/slices/notesSlice";
-import NoteModal from "../components/NoteModal";
+import NoteModal from "../components/NoteModal/NoteModal";
 
 interface NotesTableProps {
   isShowArchived: boolean;
@@ -41,7 +41,8 @@ const NotesTable: React.FC<NotesTableProps> = ({ isShowArchived }) => {
         note.content,
         noteDates,
         <CustomButton
-          callback={() => {
+          color="green"
+          onClick={() => {
             setEditNoteState({
               id: note.id,
               name: note.name,
@@ -54,14 +55,16 @@ const NotesTable: React.FC<NotesTableProps> = ({ isShowArchived }) => {
           <Icon type="Edit" />
         </CustomButton>,
         <CustomButton
-          callback={() => {
+          color="yellow"
+          onClick={() => {
             dispatch(toggleArchiveNote(note));
           }}
         >
           <Icon type="Archive" />
         </CustomButton>,
         <CustomButton
-          callback={() => {
+          color="red"
+          onClick={() => {
             dispatch(deleteNote(note));
           }}
         >
@@ -71,6 +74,7 @@ const NotesTable: React.FC<NotesTableProps> = ({ isShowArchived }) => {
     }
   });
 
+  console.log(tbodyData);
   return (
     <>
       <Table

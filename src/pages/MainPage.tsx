@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import SummaryTable from "../containers/SummaryTable";
 import NotesTable from "../containers/NotesTable";
-import CustomButton from "../components/CustomButton";
-import NoteModal from "../components/NoteModal";
+import CustomButton from "../components/CustomButton/CustomButton";
+import NoteModal from "../components/NoteModal/NoteModal";
 import { addNote } from "../redux/slices/notesSlice";
 import { useAppDispatch } from "../hooks/hooksRedux";
 
@@ -29,14 +29,16 @@ const MainPage = () => {
       <NotesTable isShowArchived={isShowArchived} />
       <div className="w-full flex justify-around mt-5">
         <CustomButton
-          callback={() => {
+          color="green"
+          onClick={() => {
             setIsCreateNoteModalACtive(true);
           }}
         >
           Create note
         </CustomButton>
         <CustomButton
-          callback={() => {
+          color="blue"
+          onClick={() => {
             setIsShowArchived((prev) => !prev);
           }}
         >

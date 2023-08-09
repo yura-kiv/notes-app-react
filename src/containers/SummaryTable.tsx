@@ -1,7 +1,7 @@
 import React from "react";
-import Table from "../components/ReusableTable";
+import Table from "../components/ReusableTable/ReusableTable";
 import { useAppSelector } from "../hooks/hooksRedux";
-import { FormateRow } from "./helpers/formateRow";
+import { FormateRow } from "./helpers/helpFormateRow";
 import { theadSummaryData } from "./helpers/headersData";
 import Icon from "../components/Icon";
 

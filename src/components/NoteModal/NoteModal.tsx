@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from "react";
-import CustomButton from "./CustomButton";
-import CustomInput from "./CustomInput";
-import useInput from "../hooks/useInput";
-import CustomSelect from "./CustomSelect";
-import useSelect from "../hooks/useSelect";
+import CustomButton from "../CustomButton/CustomButton";
+import CustomInput from "../CustomInput/CustomInput";
+import useInput from "../../hooks/useInput";
+import CustomSelect from "../CustomSelect/CustomSelect";
+import useSelect from "../../hooks/useSelect";
 
 const categories: string[] = ["Task", "Random Thought", "Idea"];
 
@@ -99,7 +99,12 @@ const NoteModal: React.FC<NoteModalProps> = ({
             options={categories}
             onChange={categorySelect.onChange}
           ></CustomSelect>
-          <CustomButton callback={() => {}}>{header}</CustomButton>
+          <CustomButton
+            color="green"
+            onClick={() => {}}
+          >
+            {header}
+          </CustomButton>
         </form>
       </div>
     </div>
