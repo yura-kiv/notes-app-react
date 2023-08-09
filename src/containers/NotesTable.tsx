@@ -8,6 +8,7 @@ import CustomButton from "../components/CustomButton";
 import { useAppDispatch } from "../hooks/hooksRedux";
 import { deleteNote, editNote, toggleArchiveNote } from "../redux/slices/notesSlice";
 import NoteModal from "../components/NoteModal";
+import { Note } from "../interfaces/note";
 
 interface NotesTableProps {
   isShowArchived: boolean;
@@ -26,7 +27,7 @@ const NotesTable: React.FC<NotesTableProps> = ({ isShowArchived }) => {
 
   // Formate rows for table component like: [[name: ..., date: ..., ...], [...], [...], ...]
   const tbodyData: any[] = [];
-  notes.map((note) => {
+  notes.map((note: Note) => {
     if (
       (!isShowArchived && note.status === "archived") ||
       (isShowArchived && note.status === "active")
@@ -41,7 +42,8 @@ const NotesTable: React.FC<NotesTableProps> = ({ isShowArchived }) => {
         note.content,
         noteDates,
         <CustomButton
-          callback={() => {
+          color="green"
+          onClick={() => {
             setEditNoteState({
               id: note.id,
               name: note.name,
@@ -54,14 +56,16 @@ const NotesTable: React.FC<NotesTableProps> = ({ isShowArchived }) => {
           <Icon type="Edit" />
         </CustomButton>,
         <CustomButton
-          callback={() => {
+          color="yellow"
+          onClick={() => {
             dispatch(toggleArchiveNote(note));
           }}
         >
           <Icon type="Archive" />
         </CustomButton>,
         <CustomButton
-          callback={() => {
+          color="red"
+          onClick={() => {
             dispatch(deleteNote(note));
           }}
         >

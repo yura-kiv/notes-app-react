@@ -29,14 +29,16 @@ const MainPage = () => {
       <NotesTable isShowArchived={isShowArchived} />
       <div className="w-full flex justify-around mt-5">
         <CustomButton
-          callback={() => {
+          color="green"
+          onClick={() => {
             setIsCreateNoteModalACtive(true);
           }}
         >
           Create note
         </CustomButton>
         <CustomButton
-          callback={() => {
+          color="blue"
+          onClick={() => {
             setIsShowArchived((prev) => !prev);
           }}
         >

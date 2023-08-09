@@ -99,7 +99,12 @@ const NoteModal: React.FC<NoteModalProps> = ({
             options={categories}
             onChange={categorySelect.onChange}
           ></CustomSelect>
-          <CustomButton callback={() => {}}>{header}</CustomButton>
+          <CustomButton
+            color="green"
+            onClick={() => {}}
+          >
+            {header}
+          </CustomButton>
         </form>
       </div>
     </div>
