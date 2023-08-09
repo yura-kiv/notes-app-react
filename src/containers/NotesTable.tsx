@@ -27,7 +27,7 @@ const NotesTable: React.FC<NotesTableProps> = ({ isShowArchived }) => {
 
   // Formate rows for table component like: [[name: ..., date: ..., ...], [...], [...], ...]
   const tbodyData: any[] = [];
-  notes.map((note: Note) => {
+  notes.map((note) => {
     if (
       (!isShowArchived && note.status === "archived") ||
       (isShowArchived && note.status === "active")
