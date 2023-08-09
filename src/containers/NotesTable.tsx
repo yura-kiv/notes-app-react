@@ -74,7 +74,6 @@ const NotesTable: React.FC<NotesTableProps> = ({ isShowArchived }) => {
     }
   });
 
-  console.log(tbodyData);
   return (
     <>
       <Table
