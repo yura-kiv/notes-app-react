@@ -1,4 +1,5 @@
 {
+  "homepage": "http://yura-kiv.github.io/notes-app-react",
   "name": "notes-app-react",
   "version": "0.1.0",
   "private": true,
@@ -25,7 +26,9 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "storybook": "storybook dev -p 6006",
-    "build-storybook": "storybook build"
+    "build-storybook": "storybook build",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build"
   },
   "eslintConfig": {
     "extends": [
@@ -59,6 +62,7 @@
     "@storybook/testing-library": "^0.2.0",
     "babel-plugin-named-exports-order": "^0.0.2",
     "eslint-plugin-storybook": "^0.6.13",
+    "gh-pages": "^6.0.0",
     "prop-types": "^15.8.1",
     "storybook": "^7.2.2",
     "tailwindcss": "^3.3.3",
